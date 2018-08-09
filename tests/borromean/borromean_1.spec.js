@@ -25,26 +25,14 @@
 // INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-"use strict";
-//
-const monero_config = require("./monero_config");
-const monero_utils = require("./monero_cryptonote_utils_instance");
-//
-function IsTransactionConfirmed(tx, blockchain_height) {
-	return blockchain_height - tx.height > monero_config.txMinConfirms;
-}
-exports.IsTransactionConfirmed = IsTransactionConfirmed;
-//
-function IsTransactionUnlocked(tx, blockchain_height) {
-	return monero_utils.is_tx_unlocked(tx.unlock_time || 0, blockchain_height);
-}
-exports.IsTransactionUnlocked = IsTransactionUnlocked;
-//
-function TransactionLockedReason(tx, blockchain_height) {
-	return monero_utils.tx_locked_reason(
-		tx.unlock_time || 0,
-		blockchain_height,
-	);
-}
-exports.TransactionLockedReason = TransactionLockedReason;
+
+const monero_utils = require("../../").monero_utils;
+const { generate_parameters } = require("./test_parameters");
+const { indi, P1v, P2v, xv, N } = generate_parameters();
+
+it("borromean_3", () => {
+	// #true one
+	const bb = monero_utils.genBorromean(xv, [P1v, P2v], indi, 2, N); /*?.*/
+	const valid = monero_utils.verifyBorromean(bb, P1v, P2v); /*?.*/
+	expect(valid).toBe(true);
+});

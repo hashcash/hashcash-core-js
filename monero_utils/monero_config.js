@@ -26,12 +26,11 @@
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
-"use strict"
+"use strict";
 //
-const JSBigInt = require('../cryptonote_utils/biginteger').BigInteger
+const JSBigInt = require("../cryptonote_utils/biginteger").BigInteger;
 //
-module.exports =
-{
+module.exports = {
 	// Number of atomic units in one unit of currency. e.g. 12 => 10^12 = 1000000000000
 	coinUnitPlaces: 2,
 
@@ -39,31 +38,29 @@ module.exports =
 	txMinConfirms: 10,
 
 	// Currency symbol
-	coinSymbol: 'XHC',
+	coinSymbol: "XHC",
 
 	// OpenAlias prefix
 	openAliasPrefix: "xhc",
 
 	// Currency name
-	coinName: 'Hashcash',
+	coinName: "Hashcash",
 
 	// Payment URI Prefix
-	coinUriPrefix: 'hashcash:',
+	coinUriPrefix: "hashcash:",
 
 	// Prefix code for addresses
 	addressPrefix: 0x6d72, // 18 => addresses start with "4"
 	integratedAddressPrefix: 0x6d73,
-
-	// Network per kb fee in atomic units
-	feePerKB_JSBigInt: new JSBigInt('1'),
+	subaddressPrefix: 0x6d74,
 
 	// Dust threshold in atomic units
-	// 10^10 used for choosing outputs/change - we decompose all the way down if the receiver wants now regardless of threshold
-	dustThreshold: new JSBigInt('1'),
+	// 2*10^9 used for choosing outputs/change - we decompose all the way down if the receiver wants now regardless of threshold
+	dustThreshold: new JSBigInt("1"),
 
 	// Maximum block number, used for tx unlock time
 	maxBlockNumber: 500000000,
 
 	// Average block time in seconds, used for unlock time estimation
-	avgBlockTime: 60
-}
+	avgBlockTime: 60,
+};
