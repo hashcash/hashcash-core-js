@@ -28,6 +28,8 @@
 
 "use strict";
 
+var moneroConfig = require('../monero_utils/monero_config');
+
 var network_type = {
 	MAINNET: 0,
 	TESTNET: 1,
@@ -35,9 +37,9 @@ var network_type = {
 };
 exports.network_type = network_type;
 //
-var __MAINNET_CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 18;
-var __MAINNET_CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX = 19;
-var __MAINNET_CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX = 42;
+var __MAINNET_CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = moneroConfig.addressPrefix; // 18;
+var __MAINNET_CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX = moneroConfig.integratedAddressPrefix; // 19;
+var __MAINNET_CRYPTONOTE_PUBLIC_SUBADDRESS_BASE58_PREFIX = moneroConfig.subaddressPrefix; // 42;
 //
 var __TESTNET_CRYPTONOTE_PUBLIC_ADDRESS_BASE58_PREFIX = 53;
 var __TESTNET_CRYPTONOTE_PUBLIC_INTEGRATED_ADDRESS_BASE58_PREFIX = 54;
